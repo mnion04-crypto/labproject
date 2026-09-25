@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="root" styleClass="main-root"
+            xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.banglalearn.ui.MainController">
+
+    <left>
+        <VBox spacing="6" styleClass="sidebar" prefWidth="180">
+            <padding>
+                <Insets top="20" right="12" bottom="20" left="12"/>
+            </padding>
+            <Label styleClass="sidebar-title" text="বাংলা শিখি"/>
+            <Label fx:id="currentUserLabel" styleClass="sidebar-user"/>
+            <Button fx:id="lessonsButton" maxWidth="Infinity" text="Lessons" onAction="#showLessons" styleClass="nav-button"/>
+            <Button fx:id="vocabularyButton" maxWidth="Infinity" text="Vocabulary" onAction="#showVocabulary" styleClass="nav-button"/>
+            <Button fx:id="profileButton" maxWidth="Infinity" text="Profile" onAction="#showProfile" styleClass="nav-button"/>
+            <VBox VBox.vgrow="ALWAYS"/>
+            <Button maxWidth="Infinity" text="Switch profile" onAction="#handleSwitchProfile" styleClass="nav-button-secondary"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="content-area"/>
+    </center>
+</BorderPane>

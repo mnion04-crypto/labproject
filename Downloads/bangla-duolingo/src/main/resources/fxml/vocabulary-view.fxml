@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" spacing="12" styleClass="view-root"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.banglalearn.ui.VocabularyController">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <Label styleClass="view-heading" text="Vocabulary browser"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Lesson group:"/>
+        <ComboBox fx:id="groupComboBox" prefWidth="200"/>
+    </HBox>
+
+    <TableView fx:id="itemsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="banglaColumn" text="Bangla" prefWidth="120"/>
+            <TableColumn fx:id="romanizationColumn" text="Romanization" prefWidth="140"/>
+            <TableColumn fx:id="meaningColumn" text="Meaning" prefWidth="220"/>
+        </columns>
+    </TableView>
+</VBox>

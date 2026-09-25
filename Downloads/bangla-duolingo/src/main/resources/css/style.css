@@ -1,0 +1,162 @@
+/* ---------- Palette ----------
+   Inspired by the Bangladeshi flag: deep green + red accent, on a clean off-white app surface. */
+* {
+    -fx-bangla-green: #046A38;
+    -fx-bangla-green-dark: #024a27;
+    -fx-bangla-red: #DA291C;
+    -fx-surface: #FAF9F6;
+    -fx-surface-alt: #FFFFFF;
+    -fx-text-main: #1F2A24;
+    -fx-text-muted: #6B7A72;
+}
+
+.main-root, .profile-picker-root {
+    -fx-background-color: -fx-surface;
+    -fx-font-family: "Segoe UI", "Noto Sans Bengali", sans-serif;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    -fx-background-color: -fx-bangla-green;
+}
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-user {
+    -fx-text-fill: #d8ede1;
+    -fx-font-size: 12px;
+    -fx-padding: 0 0 10 0;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.nav-button:hover {
+    -fx-background-color: -fx-bangla-green-dark;
+}
+
+.nav-button-secondary {
+    -fx-background-color: transparent;
+    -fx-text-fill: #d8ede1;
+    -fx-font-size: 12px;
+    -fx-border-color: #d8ede1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* ---------- Content area ---------- */
+.content-area, .view-root {
+    -fx-background-color: -fx-surface;
+}
+
+.view-heading {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-main;
+}
+
+.hint-label {
+    -fx-text-fill: -fx-text-muted;
+    -fx-font-size: 12px;
+}
+
+/* ---------- Lesson group buttons ---------- */
+.lesson-group-btn {
+    -fx-background-color: -fx-surface-alt;
+    -fx-border-color: -fx-bangla-green;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 14 22;
+    -fx-font-size: 14px;
+    -fx-text-fill: -fx-bangla-green;
+    -fx-cursor: hand;
+}
+.lesson-group-btn:hover {
+    -fx-background-color: derive(-fx-bangla-green, 90%);
+}
+/* Perfect-score badge: filled green with a star cue */
+.lesson-group-btn.perfect {
+    -fx-background-color: -fx-bangla-green;
+    -fx-text-fill: white;
+}
+
+/* ---------- Quiz ---------- */
+.quiz-prompt {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-text-main;
+}
+
+.option-button {
+    -fx-background-color: -fx-surface-alt;
+    -fx-border-color: #C9D3CD;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 12 20;
+    -fx-font-size: 14px;
+    -fx-min-width: 160px;
+    -fx-cursor: hand;
+}
+.option-button:hover {
+    -fx-border-color: -fx-bangla-green;
+}
+.option-button.correct {
+    -fx-background-color: derive(-fx-bangla-green, 60%);
+    -fx-border-color: -fx-bangla-green;
+}
+.option-button.incorrect {
+    -fx-background-color: derive(-fx-bangla-red, 70%);
+    -fx-border-color: -fx-bangla-red;
+}
+
+.feedback-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.feedback-correct {
+    -fx-text-fill: -fx-bangla-green;
+}
+.feedback-incorrect {
+    -fx-text-fill: -fx-bangla-red;
+}
+
+.primary-button {
+    -fx-background-color: -fx-bangla-green;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 24;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.primary-button:hover {
+    -fx-background-color: -fx-bangla-green-dark;
+}
+.primary-button:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* ---------- Profile picker ---------- */
+.app-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -fx-bangla-green;
+}
+.app-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: -fx-text-muted;
+}
+.error-label {
+    -fx-text-fill: -fx-bangla-red;
+    -fx-font-size: 12px;
+}

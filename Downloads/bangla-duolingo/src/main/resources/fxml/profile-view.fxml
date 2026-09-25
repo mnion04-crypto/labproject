@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" spacing="12" styleClass="view-root"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.banglalearn.ui.ProfileController">
+    <padding>
+        <Insets top="24" right="24" bottom="24" left="24"/>
+    </padding>
+
+    <Label fx:id="headingLabel" styleClass="view-heading"/>
+    <Label fx:id="summaryLabel" styleClass="hint-label"/>
+
+    <TableView fx:id="progressTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="groupColumn" text="Lesson" prefWidth="160"/>
+            <TableColumn fx:id="scoreColumn" text="Score" prefWidth="100"/>
+            <TableColumn fx:id="perfectColumn" text="Perfect?" prefWidth="90"/>
+            <TableColumn fx:id="dateColumn" text="Completed" prefWidth="180"/>
+        </columns>
+    </TableView>
+</VBox>

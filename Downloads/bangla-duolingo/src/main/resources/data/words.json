@@ -1,0 +1,32 @@
+[
+  { "id": "word_hyalo",   "bangla": "হ্যালো",    "romanization": "hyalo",     "englishMeaning": "hello",       "partOfSpeech": "GREETING", "lessonGroup": "greetings", "difficulty": 1 },
+  { "id": "word_dhonnobad","bangla": "ধন্যবাদ",  "romanization": "dhonnobad", "englishMeaning": "thank you",   "partOfSpeech": "GREETING", "lessonGroup": "greetings", "difficulty": 1 },
+  { "id": "word_kemonacho","bangla": "কেমন আছো", "romanization": "kemon acho","englishMeaning": "how are you", "partOfSpeech": "PHRASE",   "lessonGroup": "greetings", "difficulty": 2 },
+  { "id": "word_bidai",   "bangla": "বিদায়",    "romanization": "bidai",     "englishMeaning": "goodbye",     "partOfSpeech": "GREETING", "lessonGroup": "greetings", "difficulty": 1 },
+
+  { "id": "word_ami",     "bangla": "আমি",       "romanization": "ami",       "englishMeaning": "I",           "partOfSpeech": "PRONOUN", "lessonGroup": "basics", "difficulty": 1 },
+  { "id": "word_tumi",    "bangla": "তুমি",      "romanization": "tumi",      "englishMeaning": "you",         "partOfSpeech": "PRONOUN", "lessonGroup": "basics", "difficulty": 1 },
+  { "id": "word_she",     "bangla": "সে",        "romanization": "she",       "englishMeaning": "he/she",      "partOfSpeech": "PRONOUN", "lessonGroup": "basics", "difficulty": 1 },
+  { "id": "word_amra",    "bangla": "আমরা",      "romanization": "amra",      "englishMeaning": "we",          "partOfSpeech": "PRONOUN", "lessonGroup": "basics", "difficulty": 2 },
+
+  { "id": "word_jol",     "bangla": "জল",        "romanization": "jol",       "englishMeaning": "water",       "partOfSpeech": "NOUN", "lessonGroup": "food", "difficulty": 1 },
+  { "id": "word_bhat",    "bangla": "ভাত",       "romanization": "bhat",      "englishMeaning": "rice",        "partOfSpeech": "NOUN", "lessonGroup": "food", "difficulty": 1 },
+  { "id": "word_mach",    "bangla": "মাছ",       "romanization": "mach",      "englishMeaning": "fish",        "partOfSpeech": "NOUN", "lessonGroup": "food", "difficulty": 1 },
+  { "id": "word_dudh",    "bangla": "দুধ",       "romanization": "dudh",      "englishMeaning": "milk",        "partOfSpeech": "NOUN", "lessonGroup": "food", "difficulty": 1 },
+  { "id": "word_mishti",  "bangla": "মিষ্টি",    "romanization": "mishti",    "englishMeaning": "sweet / dessert", "partOfSpeech": "NOUN", "lessonGroup": "food", "difficulty": 2 },
+
+  { "id": "word_ma",      "bangla": "মা",        "romanization": "ma",        "englishMeaning": "mother",      "partOfSpeech": "NOUN", "lessonGroup": "family", "difficulty": 1 },
+  { "id": "word_baba",    "bangla": "বাবা",      "romanization": "baba",      "englishMeaning": "father",      "partOfSpeech": "NOUN", "lessonGroup": "family", "difficulty": 1 },
+  { "id": "word_bhai",    "bangla": "ভাই",       "romanization": "bhai",      "englishMeaning": "brother",     "partOfSpeech": "NOUN", "lessonGroup": "family", "difficulty": 1 },
+  { "id": "word_bon",     "bangla": "বোন",       "romanization": "bon",       "englishMeaning": "sister",      "partOfSpeech": "NOUN", "lessonGroup": "family", "difficulty": 1 },
+
+  { "id": "word_bhalobasha","bangla": "ভালোবাসা","romanization": "bhalobasha","englishMeaning": "love",        "partOfSpeech": "NOUN", "lessonGroup": "emotions", "difficulty": 2 },
+  { "id": "word_khushi",  "bangla": "খুশি",      "romanization": "khushi",    "englishMeaning": "happy",       "partOfSpeech": "ADJECTIVE", "lessonGroup": "emotions", "difficulty": 1 },
+  { "id": "word_dukkho",  "bangla": "দুঃখ",      "romanization": "dukkho",    "englishMeaning": "sad / sorrow","partOfSpeech": "NOUN", "lessonGroup": "emotions", "difficulty": 2 },
+
+  { "id": "word_ek",      "bangla": "এক",        "romanization": "ek",        "englishMeaning": "one",         "partOfSpeech": "NUMBER", "lessonGroup": "numbers", "difficulty": 1 },
+  { "id": "word_dui",     "bangla": "দুই",       "romanization": "dui",       "englishMeaning": "two",         "partOfSpeech": "NUMBER", "lessonGroup": "numbers", "difficulty": 1 },
+  { "id": "word_tin",     "bangla": "তিন",       "romanization": "tin",       "englishMeaning": "three",       "partOfSpeech": "NUMBER", "lessonGroup": "numbers", "difficulty": 1 },
+  { "id": "word_char",    "bangla": "চার",       "romanization": "char",      "englishMeaning": "four",        "partOfSpeech": "NUMBER", "lessonGroup": "numbers", "difficulty": 1 },
+  { "id": "word_panch",   "bangla": "পাঁচ",      "romanization": "panch",     "englishMeaning": "five",        "partOfSpeech": "NUMBER", "lessonGroup": "numbers", "difficulty": 1 }
+]

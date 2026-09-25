@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="root" alignment="CENTER" spacing="16" styleClass="profile-picker-root"
+      xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.banglalearn.ui.ProfilePickerController">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <Label styleClass="app-title" text="বাংলা শিখি"/>
+    <Label styleClass="app-subtitle" text="Learn Bangla — pick a profile"/>
+
+    <ListView fx:id="profileListView" prefHeight="180" prefWidth="280"/>
+
+    <Button fx:id="continueButton" text="Continue" disable="true" onAction="#handleContinue" styleClass="primary-button"/>
+
+    <HBox alignment="CENTER" spacing="8">
+        <TextField fx:id="newProfileField" promptText="New profile name"/>
+        <Button text="Create" onAction="#handleCreateProfile"/>
+    </HBox>
+
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+</VBox>
