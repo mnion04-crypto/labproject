@@ -23,7 +23,7 @@
 .sidebar-title {
     -fx-text-fill: white;
     -fx-font-size: 20px;
-    -fx-font-weight: bold;
+
 }
 
 .sidebar-user {
@@ -122,7 +122,7 @@
 
 .feedback-label {
     -fx-font-size: 15px;
-    -fx-font-weight: bold;
+
 }
 .feedback-correct {
     -fx-text-fill: -fx-bangla-green;
@@ -149,7 +149,7 @@
 /* ---------- Profile picker ---------- */
 .app-title {
     -fx-font-size: 28px;
-    -fx-font-weight: bold;
+
     -fx-text-fill: -fx-bangla-green;
 }
 .app-subtitle {

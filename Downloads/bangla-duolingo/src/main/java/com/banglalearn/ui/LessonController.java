@@ -1,5 +1,6 @@
 package com.banglalearn.ui;
 
+import javafx.scene.control.Alert;
 import com.banglalearn.data.ContentLoader;
 import com.banglalearn.db.ProgressDAO;
 import com.banglalearn.db.UserProfile;
@@ -107,7 +108,7 @@ public class LessonController {
 
     private void startQuiz(String group) {
         List<LessonItem> items = lessonGroups.get(group);
-        List<Exercise> exercises = lessonFactory.buildLesson(items, ExerciseType.BANGLA_TO_ENGLISH);
+        List<Exercise> exercises = lessonFactory.buildLesson(items, ExerciseType.ENGLISH_TO_BANGLA);
         activeSession = new QuizSession(group, exercises);
 
         quizGroupLabel.setText(displayName(group) + " lesson");
@@ -151,8 +152,13 @@ public class LessonController {
             feedbackLabel.setText("Correct!");
             feedbackLabel.getStyleClass().setAll("feedback-label", "feedback-correct");
         } else {
-            feedbackLabel.setText("Not quite — correct answer: " + exercise.correctAnswerText());
-            feedbackLabel.getStyleClass().setAll("feedback-label", "feedback-incorrect");
+            feedbackLabel.setText("");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Incorrect");
+            alert.setHeaderText("Not quite!");
+            alert.setContentText("Correct answer: " + exercise.correctAnswerText());
+            alert.getDialogPane().getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+            alert.showAndWait();
         }
 
         activeSession.submitAnswer(chosenIndex);
