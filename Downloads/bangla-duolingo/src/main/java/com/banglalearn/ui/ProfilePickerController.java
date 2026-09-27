@@ -1,5 +1,6 @@
 package com.banglalearn.ui;
 
+import javafx.scene.control.PasswordField;
 import com.banglalearn.Main;
 import com.banglalearn.db.ProgressDAO;
 import com.banglalearn.db.UserProfile;
@@ -18,6 +19,7 @@ public class ProfilePickerController {
     @FXML private ListView<UserProfile> profileListView;
     @FXML private Button continueButton;
     @FXML private TextField newProfileField;
+    @FXML private PasswordField newProfilePinField;
     @FXML private Label errorLabel;
 
     @FXML
@@ -45,12 +47,17 @@ public class ProfilePickerController {
     @FXML
     private void handleCreateProfile() {
         String name = newProfileField.getText() == null ? "" : newProfileField.getText().trim();
+        String pin = newProfilePinField.getText();
         if (name.isEmpty()) {
             showError("Enter a name for the new profile.");
             return;
         }
+        if (pin == null || pin.isEmpty()) {
+            showError("Enter a PIN for the new profile.");
+            return;
+        }
         BackgroundTasks.run(
-                () -> new ProgressDAO().createProfile(name),
+                () -> new ProgressDAO().createProfile(name, pin),
                 (UserProfile created) -> enterAppAs(created),
                 error -> showError("Could not create profile: " + error.getMessage())
         );

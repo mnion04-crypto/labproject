@@ -27,20 +27,21 @@ public class ProgressDAO {
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
             while (rs.next()) {
-                profiles.add(new UserProfile(rs.getInt("id"), rs.getString("name")));
+                profiles.add(new UserProfile(rs.getInt("id"), rs.getString("name"), rs.getString("pin")));
             }
         }
         return profiles;
     }
 
-    public UserProfile createProfile(String name) throws SQLException {
-        String sql = "INSERT INTO profiles(name) VALUES (?)";
+    public UserProfile createProfile(String name, String pin) throws SQLException {
+        String sql = "INSERT INTO profiles(name, pin) VALUES (?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, name);
+            ps.setString(2, pin);
             ps.executeUpdate();
             try (ResultSet keys = ps.getGeneratedKeys()) {
                 keys.next();
-                return new UserProfile(keys.getInt(1), name);
+                return new UserProfile(keys.getInt(1), name, pin);
             }
         }
     }

@@ -37,9 +37,11 @@ public class DatabaseManager {
     private void initSchema() throws SQLException {
         try (Statement st = connection.createStatement()) {
             st.execute("""
-                CREATE TABLE IF NOT EXISTS profiles (
+                
+                    CREATE TABLE IF NOT EXISTS profiles (
                     id   INTEGER PRIMARY KEY AUTOINCREMENT,
-                    name TEXT NOT NULL UNIQUE
+                    name TEXT NOT NULL UNIQUE,
+                    pin  TEXT
                 )
                 """);
 

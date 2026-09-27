@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -24,6 +25,7 @@
 
     <HBox alignment="CENTER" spacing="8">
         <TextField fx:id="newProfileField" promptText="New profile name"/>
+        <PasswordField fx:id="newProfilePinField" promptText="PIN (required)"/>
         <Button text="Create" onAction="#handleCreateProfile"/>
     </HBox>
 
