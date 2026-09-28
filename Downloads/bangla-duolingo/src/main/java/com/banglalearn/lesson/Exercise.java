@@ -1,45 +1,35 @@
 package com.banglalearn.lesson;
 
 import com.banglalearn.model.LessonItem;
-
 import java.util.List;
 
 /**
- * One multiple-choice question: a prompt string, a shuffled list of
- * option strings, and which option index is correct.
+ * Base class for every quiz style. Holds the shared state and logic;
+ * subclasses decide WHAT is asked and WHAT counts as the answer.
  */
-public class Exercise {
+public abstract class Exercise {
 
     private final LessonItem sourceItem;
-    private final ExerciseType type;
-    private final String prompt;
-    private final List<String> options;
-    private final int correctOptionIndex;
+    private List<String> options;
+    private int correctOptionIndex;
 
-    public Exercise(LessonItem sourceItem, ExerciseType type, String prompt,
-                     List<String> options, int correctOptionIndex) {
+    protected Exercise(LessonItem sourceItem) {
         this.sourceItem = sourceItem;
-        this.type = type;
-        this.prompt = prompt;
+    }
+
+    // ---- Subclasses MUST implement these ----
+    public abstract ExerciseType type();
+    public abstract String prompt();
+    public abstract String answerFor(LessonItem item);
+
+    // ---- Shared behaviour ----
+    void setOptions(List<String> options, int correctOptionIndex) {
         this.options = options;
         this.correctOptionIndex = correctOptionIndex;
     }
 
-    public LessonItem sourceItem() {
-        return sourceItem;
-    }
-
-    public ExerciseType type() {
-        return type;
-    }
-
-    public String prompt() {
-        return prompt;
-    }
-
-    public List<String> options() {
-        return options;
-    }
+    public LessonItem sourceItem() { return sourceItem; }
+    public List<String> options() { return options; }
 
     public boolean isCorrect(int chosenIndex) {
         return chosenIndex == correctOptionIndex;

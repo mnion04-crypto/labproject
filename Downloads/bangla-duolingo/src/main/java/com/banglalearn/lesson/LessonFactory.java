@@ -13,6 +13,9 @@ import java.util.Random;
  *
  * Because it only depends on the LessonItem interface, this class works
  * unchanged for BanglaCharacter, BanglaWord, or any content type added later.
+ *
+ * Each ExerciseType maps to its own Exercise subclass (see createExercise),
+ * so the quiz-style logic lives in those subclasses, not here.
  */
 public class LessonFactory {
 
@@ -34,8 +37,8 @@ public class LessonFactory {
      * same list, or a wider pool for small lesson groups).
      */
     public List<Exercise> buildLesson(List<? extends LessonItem> items,
-                                       List<? extends LessonItem> pool,
-                                       ExerciseType type) {
+                                      List<? extends LessonItem> pool,
+                                      ExerciseType type) {
         List<Exercise> exercises = new ArrayList<>();
         for (LessonItem item : items) {
             exercises.add(buildExercise(item, pool, type));
@@ -54,34 +57,30 @@ public class LessonFactory {
     }
 
     public Exercise buildExercise(LessonItem item, List<? extends LessonItem> pool, ExerciseType type) {
-        String prompt = switch (type) {
-            case BANGLA_TO_ENGLISH -> item.bangla();
-            case ENGLISH_TO_BANGLA -> item.englishMeaning();
-            case BANGLA_TO_ROMANIZATION -> item.bangla();
+        Exercise exercise = createExercise(item, type);            // the only switch left
+        String correctAnswer = exercise.answerFor(item);           // polymorphic call
+
+        List<String> options = generateOptions(item, pool, exercise, correctAnswer);
+        exercise.setOptions(options, options.indexOf(correctAnswer));
+
+        return exercise;
+    }
+
+    /** The single place that knows which subclass matches which ExerciseType. */
+    private Exercise createExercise(LessonItem item, ExerciseType type) {
+        return switch (type) {
+            case BANGLA_TO_ENGLISH      -> new BanglaToEnglishExercise(item);
+            case ENGLISH_TO_BANGLA      -> new EnglishToBanglaExercise(item);
+            case BANGLA_TO_ROMANIZATION -> new BanglaToRomanizationExercise(item);
         };
-
-        String correctAnswer = switch (type) {
-            case BANGLA_TO_ENGLISH -> item.englishMeaning();
-            case ENGLISH_TO_BANGLA -> item.bangla();
-            case BANGLA_TO_ROMANIZATION -> item.romanization();
-        };
-
-        List<String> options = generateOptions(item, pool, type, correctAnswer);
-        int correctIndex = options.indexOf(correctAnswer);
-
-        return new Exercise(item, type, prompt, options, correctIndex);
     }
 
     private List<String> generateOptions(LessonItem correctItem, List<? extends LessonItem> pool,
-                                          ExerciseType type, String correctAnswer) {
+                                         Exercise exercise, String correctAnswer) {
         List<String> distractorPool = new ArrayList<>();
         for (LessonItem candidate : pool) {
             if (candidate.id().equals(correctItem.id())) continue;
-            String candidateAnswer = switch (type) {
-                case BANGLA_TO_ENGLISH -> candidate.englishMeaning();
-                case ENGLISH_TO_BANGLA -> candidate.bangla();
-                case BANGLA_TO_ROMANIZATION -> candidate.romanization();
-            };
+            String candidateAnswer = exercise.answerFor(candidate);   // was a switch
             if (!candidateAnswer.equals(correctAnswer) && !distractorPool.contains(candidateAnswer)) {
                 distractorPool.add(candidateAnswer);
             }
