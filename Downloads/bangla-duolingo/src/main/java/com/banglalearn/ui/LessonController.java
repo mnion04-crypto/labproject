@@ -1,5 +1,6 @@
 package com.banglalearn.ui;
 
+import com.banglalearn.db.WordDAO;
 import javafx.scene.control.Alert;
 import com.banglalearn.data.ContentLoader;
 import com.banglalearn.db.ProgressDAO;
@@ -59,6 +60,7 @@ public class LessonController {
                     Map<String, List<LessonItem>> groups = new LinkedHashMap<>();
                     groupItemsByLessonGroup(groups, loader.loadCharacters().stream().map(c -> (LessonItem) c).toList());
                     groupItemsByLessonGroup(groups, loader.loadWords().stream().map(w -> (LessonItem) w).toList());
+                    groupItemsByLessonGroup(groups, new WordDAO().getAll().stream().map(w -> (LessonItem) w).toList());  // NEW
                     return groups;
                 },
                 (Map<String, List<LessonItem>> groups) -> {

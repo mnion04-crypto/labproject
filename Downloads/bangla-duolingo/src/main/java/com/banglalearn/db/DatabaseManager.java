@@ -56,6 +56,16 @@ public class DatabaseManager {
                     FOREIGN KEY (profile_id) REFERENCES profiles(id)
                 )
                 """);
+            st.execute("""
+                CREATE TABLE IF NOT EXISTS custom_words (
+                    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+                    bangla         TEXT NOT NULL,
+                    romanization   TEXT NOT NULL,
+                    english        TEXT NOT NULL,
+                    part_of_speech TEXT NOT NULL,
+                    lesson_group   TEXT NOT NULL
+                )
+                """);
         }
     }
 }
