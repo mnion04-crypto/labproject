@@ -22,7 +22,7 @@ public class ProgressDAO {
     // ---------- Profiles ----------
 
     public List<UserProfile> getAllProfiles() throws SQLException {
-        String sql = "SELECT id, name FROM profiles ORDER BY name";
+        String sql = "SELECT id, name, pin FROM profiles ORDER BY name";   // <-- added "pin"
         List<UserProfile> profiles = new ArrayList<>();
         try (Statement st = connection.createStatement();
              ResultSet rs = st.executeQuery(sql)) {
