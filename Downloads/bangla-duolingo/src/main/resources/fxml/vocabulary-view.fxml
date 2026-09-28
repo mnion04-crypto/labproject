@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -23,8 +25,11 @@
         <Label text="Lesson group:"/>
         <ComboBox fx:id="groupComboBox" prefWidth="200"/>
         <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="importButton" text="Import words (online)" onAction="#handleImportWords"/>
         <Button text="+ Add word" onAction="#handleAddWord" styleClass="primary-button"/>
-        <Button fx:id="editButton" text="Edit" onAction="#handleEditWord" disable="true"/>
+        <Button fx:id="editButton" text="Edit" onAction="#handleEditWord" disable="true">
+            <tooltip><Tooltip text="Select a word in the table first"/></tooltip>
+        </Button>
         <Button fx:id="deleteButton" text="Delete" onAction="#handleDeleteWord" disable="true"/>
     </HBox>
 
@@ -32,9 +37,9 @@
 
     <TableView fx:id="itemsTable" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="banglaColumn" text="Bangla" prefWidth="120"/>
-            <TableColumn fx:id="romanizationColumn" text="Romanization" prefWidth="140"/>
-            <TableColumn fx:id="meaningColumn" text="Meaning" prefWidth="220"/>
+            <TableColumn fx:id="banglaColumn" text="Bangla"/>
+            <TableColumn fx:id="romanizationColumn" text="Romanization"/>
+            <TableColumn fx:id="meaningColumn" text="Meaning"/>
         </columns>
     </TableView>
 </VBox>

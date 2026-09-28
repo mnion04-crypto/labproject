@@ -14,6 +14,16 @@ import java.util.List;
 /** SQL for user-added words. Built-in words come from words.json and are read-only. */
 public class WordDAO {
 
+    public boolean existsCustom(String bangla) throws SQLException {
+        String sql = "SELECT 1 FROM custom_words WHERE bangla = ? LIMIT 1";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setString(1, bangla);
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
     private static final String ID_PREFIX = "custom_";
 
     private final Connection connection;

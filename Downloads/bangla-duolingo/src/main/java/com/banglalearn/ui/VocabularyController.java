@@ -1,5 +1,7 @@
 package com.banglalearn.ui;
 
+import javafx.scene.control.TextInputDialog;
+import com.banglalearn.net.RemoteWordFetcher;
 import com.banglalearn.data.ContentLoader;
 import com.banglalearn.db.WordDAO;
 import com.banglalearn.model.BanglaWord;
@@ -22,6 +24,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+
 public class VocabularyController {
 
     @FXML private ComboBox<String> groupComboBox;
@@ -32,6 +35,9 @@ public class VocabularyController {
     @FXML private Button editButton;
     @FXML private Button deleteButton;
     @FXML private Label statusLabel;
+    @FXML private Button importButton;
+
+
 
     private final List<LessonItem> allItems = new ArrayList<>();
 
@@ -41,6 +47,14 @@ public class VocabularyController {
         romanizationColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().romanization()));
         meaningColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().englishMeaning()));
 
+        // Columns take a share of the table width; the last one takes the remainder
+        banglaColumn.prefWidthProperty().bind(itemsTable.widthProperty().multiply(0.25));
+        romanizationColumn.prefWidthProperty().bind(itemsTable.widthProperty().multiply(0.25));
+        meaningColumn.prefWidthProperty().bind(
+                itemsTable.widthProperty()
+                        .subtract(banglaColumn.widthProperty())
+                        .subtract(romanizationColumn.widthProperty())
+                        .subtract(20));   // room for the vertical scrollbar
         groupComboBox.setOnAction(e -> filterByGroup(groupComboBox.getValue()));
 
         // Edit/Delete are only enabled for words the user added themselves.
@@ -101,6 +115,62 @@ public class VocabularyController {
 
     // ---------- NEW: add / edit / delete ----------
 
+    @FXML
+    private void handleImportWords() {
+        // 1. Ask the user for the URL (pre-filled with the default one)
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.getEditor().setPromptText("https://raw.githubusercontent.com/.../words.json");
+        dialog.setTitle("Import words");
+        dialog.setHeaderText("Enter the URL of a JSON word pack");
+        dialog.setContentText("URL:");
+        dialog.getEditor().setPrefWidth(500);
+        dialog.getDialogPane().getStylesheets()
+                .add(getClass().getResource("/css/style.css").toExternalForm());
+
+        String input = dialog.showAndWait().orElse(null);
+        if (input == null) return;                       // user pressed Cancel
+
+        String url = input.trim();
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            statusLabel.setText("Please enter a valid URL starting with http:// or https://");
+            return;
+        }
+
+        // 2. Download, parse and save, using the URL the user typed
+        importButton.setDisable(true);
+        statusLabel.setText("Downloading words...");
+
+        BackgroundTasks.run(
+                () -> {
+                    List<BanglaWord> fetched = new RemoteWordFetcher().fetchWords(url);
+                    WordDAO dao = new WordDAO();
+                    int added = 0;
+                    for (BanglaWord w : fetched) {
+                        if (w.bangla() == null || w.bangla().isBlank()
+                                || w.englishMeaning() == null || w.englishMeaning().isBlank()
+                                || w.romanization() == null
+                                || w.partOfSpeech() == null
+                                || w.lessonGroup() == null) {
+                            continue;
+                        }
+                        if (dao.existsCustom(w.bangla())) continue;
+                        dao.add(w.bangla(), w.romanization(), w.englishMeaning(),
+                                w.partOfSpeech(), w.lessonGroup().trim().toLowerCase());
+                        added++;
+                    }
+                    return added;
+                },
+                (Integer added) -> {
+                    importButton.setDisable(false);
+                    statusLabel.setText("Imported " + added + " new word(s) from the internet.");
+                    loadContent();
+                },
+                error -> {
+                    importButton.setDisable(false);
+                    statusLabel.setText("Import failed: " + error.getMessage());
+                }
+        );
+    }
     @FXML
     private void handleAddWord() {
         WordDialog.show(null, groupNames()).ifPresent(data -> BackgroundTasks.run(

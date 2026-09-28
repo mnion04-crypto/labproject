@@ -19,7 +19,7 @@
     <Label styleClass="app-title" text="বাংলা শিখি"/>
     <Label styleClass="app-subtitle" text="Learn Bangla — pick a profile"/>
 
-    <ListView fx:id="profileListView" prefHeight="180" prefWidth="280"/>
+    <ListView fx:id="profileListView"/>
 
     <Button fx:id="continueButton" text="Continue" disable="true" onAction="#handleContinue" styleClass="primary-button"/>
 

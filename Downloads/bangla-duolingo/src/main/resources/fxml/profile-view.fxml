@@ -18,10 +18,10 @@
 
     <TableView fx:id="progressTable" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="groupColumn" text="Lesson" prefWidth="160"/>
-            <TableColumn fx:id="scoreColumn" text="Score" prefWidth="100"/>
-            <TableColumn fx:id="perfectColumn" text="Perfect?" prefWidth="90"/>
-            <TableColumn fx:id="dateColumn" text="Completed" prefWidth="180"/>
+            <TableColumn fx:id="groupColumn" text="Lesson"/>
+            <TableColumn fx:id="scoreColumn" text="Score"/>
+            <TableColumn fx:id="perfectColumn" text="Perfect?"/>
+            <TableColumn fx:id="dateColumn" text="Completed"/>
         </columns>
     </TableView>
 </VBox>

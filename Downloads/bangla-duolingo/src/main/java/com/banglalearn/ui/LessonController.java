@@ -1,5 +1,6 @@
 package com.banglalearn.ui;
 
+import javafx.beans.binding.Bindings;
 import com.banglalearn.db.WordDAO;
 import javafx.scene.control.Alert;
 import com.banglalearn.data.ContentLoader;
@@ -50,6 +51,16 @@ public class LessonController {
 
     @FXML
     public void initialize() {
+        // Progress bar = 60% of the quiz pane width
+        quizProgressBar.prefWidthProperty().bind(quizPane.widthProperty().multiply(0.6));
+        quizProgressBar.maxWidthProperty().bind(quizPane.widthProperty().multiply(0.6));
+
+        // Question text scales with the window (clamped between 28px and 60px)
+        promptLabel.styleProperty().bind(Bindings.createStringBinding(
+                () -> String.format("-fx-font-size: %.0fpx;",
+                        Math.max(28, Math.min(60, quizPane.getWidth() / 16))),
+                quizPane.widthProperty()));
+
         loadContent();
     }
 

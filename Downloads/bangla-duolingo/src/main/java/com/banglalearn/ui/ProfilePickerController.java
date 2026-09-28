@@ -1,5 +1,6 @@
 package com.banglalearn.ui;
 
+import javafx.scene.layout.VBox;
 import javafx.scene.control.PasswordField;
 import com.banglalearn.Main;
 import com.banglalearn.db.ProgressDAO;
@@ -16,6 +17,7 @@ import java.util.List;
 
 public class ProfilePickerController {
 
+    @FXML private VBox root;
     @FXML private ListView<UserProfile> profileListView;
     @FXML private Button continueButton;
     @FXML private TextField newProfileField;
@@ -24,6 +26,10 @@ public class ProfilePickerController {
 
     @FXML
     public void initialize() {
+        profileListView.prefWidthProperty().bind(root.widthProperty().multiply(0.6));
+        profileListView.maxWidthProperty().bind(root.widthProperty().multiply(0.6));
+        profileListView.prefHeightProperty().bind(root.heightProperty().multiply(0.35));
+
         loadProfiles();
         profileListView.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldVal, newVal) -> continueButton.setDisable(newVal == null));

@@ -36,6 +36,15 @@ public class ProfileController {
         perfectColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().perfectScore() ? "★" : ""));
         dateColumn.setCellValueFactory(cell -> new SimpleStringProperty(cell.getValue().completedAt().format(DATE_FORMAT)));
 
+        groupColumn.prefWidthProperty().bind(progressTable.widthProperty().multiply(0.30));
+        scoreColumn.prefWidthProperty().bind(progressTable.widthProperty().multiply(0.15));
+        perfectColumn.prefWidthProperty().bind(progressTable.widthProperty().multiply(0.15));
+        dateColumn.prefWidthProperty().bind(
+                progressTable.widthProperty()
+                        .subtract(groupColumn.widthProperty())
+                        .subtract(scoreColumn.widthProperty())
+                        .subtract(perfectColumn.widthProperty())
+                        .subtract(20));
         if (profile != null) {
             loadProgress(profile);
         }
